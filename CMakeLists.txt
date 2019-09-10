@@ -247,6 +247,12 @@ foreach(file
   CMake/ctkFunctionGetGccVersion.cmake
   CMake/ctkFunctionGetCompilerVisibilityFlags.cmake
   CMake/ctkFunctionCompileSnippets.cmake
+  CMake/ctkFunctionGeneratePluginUseFile.cmake
+  CMake/ctkFunctionExtractPluginTargets.cmake
+  CMake/ctkFunctionGetAllPluginTargets.cmake
+  CMake/ctkFunctionGetTargetDependencies.cmake
+  CMake/ctkMacroSetupPlugins.cmake
+  CMake/ctkFunctionGetPluginDependencies.cmake
   )
   include(${file})
   install(FILES ${file} DESTINATION ${CTK_INSTALL_CMAKE_DIR} COMPONENT Development)
@@ -257,6 +263,8 @@ foreach(file
   CMake/ctkLinkerAsNeededFlagCheck.cmake
   CMake/ctk_compile_python_scripts.cmake.in
   CMake/CMakeFindDependencyMacro.cmake
+  CMake/ctkWrapPythonQt.py
+  CMake/ctkMacroWrapPythonQtModuleInit.cpp.in
   )
   install(FILES ${file} DESTINATION ${CTK_INSTALL_CMAKE_DIR} COMPONENT Development)
 endforeach()
