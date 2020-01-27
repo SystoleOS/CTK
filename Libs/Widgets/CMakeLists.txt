@@ -458,11 +458,19 @@ ctkMacroBuildLib(
   )
 
 if(CTK_WRAP_PYTHONQT_LIGHT)
+
+  if(NOT DEFINED PYTHON_SITE_DIR)
+    set(PYTHON_SITE_DIR "${CTK_INSTALL_LIB_DIR}")
+  endif()
+
   ctkMacroBuildLibWrapper(
     TARGET ${PROJECT_NAME}
     SRCS ${KIT_SRCS}
-    WRAPPER_LIBRARY_TYPE ${CTK_LIBRARY_MODE}
+    INSTALL_LIB_DIR ${PYTHON_SITE_DIR}
+    INSTALL_BIN_DIR ${CTK_INSTALL_BIN_DIR}
+    NO_INSTALL_SUBDIR    
     )
+  
 endif()
 
 # Plugins
