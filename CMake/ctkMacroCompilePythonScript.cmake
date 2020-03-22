@@ -18,6 +18,7 @@
 #
 
 include(${CTK_CMAKE_DIR}/ctkMacroParseArguments.cmake)
+include(${CTK_CMAKE_DIR}/ctkFunctionExtractOptimizedLibrary.cmake)
 
 set(CTK_PYTHON_COMPILE_FILE_SCRIPT_DIR "${CMAKE_BINARY_DIR}/CMakeFiles")
 
