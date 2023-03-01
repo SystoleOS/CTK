@@ -93,10 +93,15 @@ macro(ctkMacroCompilePythonScript)
     set(MY_DIRECTORY_TO_INSTALL ${MY_DESTINATION_DIR}/)
   endif()
 
-  # Install python module / resources directory
-  install(DIRECTORY "${MY_DIRECTORY_TO_INSTALL}"
-    DESTINATION "${MY_INSTALL_DIR}" COMPONENT RuntimeLibraries
-    USE_SOURCE_PERMISSIONS)
+  if(MY_SCRIPTS)
+    install(FILES ${MY_SCRIPTS}
+      DESTINATION "${MY_INSTALL_DIR}" COMPONENT RuntimeLibraries)
+  endif()
+
+  if(MY_RESOURCES)
+    install(FILES ${MY_RESOURCES}
+      DESTINATION "${MY_INSTALL_DIR}" COMPONENT RuntimeLibraries)
+  endif()
 
   if(NOT MY_GLOBAL_TARGET)
     ctkFunctionAddCompilePythonScriptTargets(${target})
