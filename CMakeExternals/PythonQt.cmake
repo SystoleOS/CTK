@@ -79,7 +79,7 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
     endif()
   endif()
 
-  ctkFunctionExtractOptimizedLibrary(PYTHON_LIBRARIES PYTHON_LIBRARY)
+  ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES Python3_LIBRARY)
 
   if (CTK_QT_VERSION VERSION_GREATER "4")
     set(revision_tag c4a5a155b2942d4b003862c3317105b4a1ea6755) # patched-9
@@ -114,7 +114,7 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
       -DPythonQt_QT_VERSION:STRING=${CTK_QT_VERSION}
       -DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR}
       -DPYTHON_INCLUDE_DIR2:PATH=${PYTHON_INCLUDE_DIR2}
-      -DPYTHON_LIBRARY:FILEPATH=${PYTHON_LIBRARY}
+      -DPython3_LIBRARY:FILEPATH=${Python3_LIBRARY}
       ${ep_PythonQt_args}
     DEPENDS
       ${${proj}_DEPENDENCIES}
@@ -133,7 +133,7 @@ mark_as_superbuild(
     PYTHON_EXECUTABLE:FILEPATH # FindPythonInterp expects PYTHON_EXECUTABLE variable to be defined
     PYTHON_INCLUDE_DIR:PATH # FindPythonQt expects PYTHON_INCLUDE_DIR variable to be defined
     PYTHON_INCLUDE_DIR2:PATH
-    PYTHON_LIBRARY:FILEPATH # FindPythonQt expects PYTHON_LIBRARY variable to be defined
+    Python3_LIBRARY:FILEPATH # FindPythonQt expects Python3_LIBRARY variable to be defined
   LABELS "FIND_PACKAGE_VARS"
   )
 mark_as_superbuild(

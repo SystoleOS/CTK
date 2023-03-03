@@ -80,17 +80,17 @@ if(NOT DEFINED VTK_DIR AND NOT ${CMAKE_PROJECT_NAME}_USE_SYSTEM_${proj})
     if(VTK_PYTHON_VERSION VERSION_GREATER "2.7")
       set(Python3_EXECUTABLE ${PYTHON_EXECUTABLE})
       set(Python3_INCLUDE_DIR ${PYTHON_INCLUDE_DIR})
-      set(Python3_LIBRARY ${PYTHON_LIBRARY})
+      set(Python3_LIBRARY ${Python3_LIBRARY})
       find_package(Python3 COMPONENTS Interpreter Development)
     endif()
 
-    ctkFunctionExtractOptimizedLibrary(PYTHON_LIBRARIES PYTHON_LIBRARY)
+    ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES Python3_LIBRARY)
     list(APPEND additional_vtk_cmakevars
       -DVTK_PYTHON_VERSION:STRING=${VTK_PYTHON_VERSION}
       # FindPythonInterp, FindPythonLibs
       -DPYTHON_EXECUTABLE:PATH=${PYTHON_EXECUTABLE}
       -DPYTHON_INCLUDE_DIR:PATH=${PYTHON_INCLUDE_DIR}
-      -DPYTHON_LIBRARY:FILEPATH=${PYTHON_LIBRARY}
+      -DPython3_LIBRARY:FILEPATH=${Python3_LIBRARY}
       -DPYTHON_DEBUG_LIBRARIES:FILEPATH=${PYTHON_DEBUG_LIBRARIES}
       )
     if(VTK_PYTHON_VERSION VERSION_GREATER "2.7")

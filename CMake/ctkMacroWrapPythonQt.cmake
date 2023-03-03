@@ -193,7 +193,7 @@ macro(ctkMacroWrapPythonQt WRAPPING_NAMESPACE TARGET SRCS_LIST_NAME SOURCES IS_W
   if(NOT PYTHONQT_FOUND)
     message(FATAL_ERROR "error: PythonQt package is required to build ${TARGET}PythonQt")
   endif()
-  include_directories(${PYTHON_INCLUDE_DIRS} ${PYTHONQT_INCLUDE_DIR})
+  include_directories(${Python3_INCLUDE_DIRS} ${PYTHONQT_INCLUDE_DIR})
 
 endmacro()
 

@@ -154,19 +154,23 @@ function(_ctk_add_compile_python_directories_target target)
       set(_compileall_code "${_compileall_code}\nctk_compile_file('${tgt}', force=1)")
     endforeach()
 
-    if(NOT PYTHONINTERP_FOUND)
-      find_package(PythonInterp REQUIRED)
+    if(NOT Python3_FOUND)
+      find_package(Python3 REQUIRED Development.Modules Interpreter)
     endif()
-    if(NOT PYTHONLIBS_FOUND)
-      find_package(PythonLibs REQUIRED)
-    endif()
+
+    # if(NOT PYTHONINTERP_FOUND)
+    #   find_package(PythonInterp REQUIRED)
+    # endif()
+    # if(NOT PYTHONLIBS_FOUND)
+    #   find_package(PythonLibs REQUIRED)
+    # endif()
 
     # Extract python lib path
-    ctkFunctionExtractOptimizedLibrary(PYTHON_LIBRARIES PYTHON_LIBRARY)
-    get_filename_component(PYTHON_LIBRARY_PATH "${PYTHON_LIBRARY}" PATH)
+    ctkFunctionExtractOptimizedLibrary(Python3_LIBRARIES Python3_LIBRARY)
+    get_filename_component(Python3_LIBRARY_PATH "${Python3_LIBRARY}" PATH)
 
     # Configure cmake script associated with the custom command
-    # required to properly update the library path with PYTHON_LIBRARY_PATH
+    # required to properly update the library path with Python3_LIBRARY_PATH
     set(compile_all_cmake_script "${CMAKE_CURRENT_BINARY_DIR}/compile_${target}_python_scripts.cmake")
     configure_file(
       ${CTK_CMAKE_DIR}/ctk_compile_python_scripts.cmake.in

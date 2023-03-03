@@ -893,18 +893,7 @@ endif()
 
 # Check if dependencies are satisfied
 if(CTK_LIB_Scripting/Python/Core)
-  if(NOT PYTHONINTERP_FOUND)
-    find_package(PythonInterp)
-    if(NOT PYTHONINTERP_FOUND)
-      message(FATAL_ERROR "PYTHON_EXECUTABLE variable should be set to build CTK_LIB_Scripting/Python")
-    endif()
-  endif()
-  if(NOT PYTHONLIBS_FOUND)
-    find_package(PythonLibs)
-    if(NOT PYTHONLIBS_FOUND)
-      message(FATAL_ERROR "PYTHON_LIBRARIES and PYTHON_INCLUDE_DIRS should be set to build CTK_LIB_Scripting/Python")
-    endif()
-  endif()
+    find_package(Python3 REQUIRED Interpreter Development.Module)
 endif()
 
 #-----------------------------------------------------------------------------
