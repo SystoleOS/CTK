@@ -25,13 +25,13 @@ set(CTK_PYTHON_COMPILE_FILE_SCRIPT_DIR "${CMAKE_BINARY_DIR}/CMakeFiles")
 #! \ingroup CMakeAPI
 macro(ctkMacroCompilePythonScript)
   ctkMacroParseArguments(MY
-    "TARGET_NAME;SCRIPTS;RESOURCES;SOURCE_DIR;DESTINATION_DIR;INSTALL_DIR"
-    "NO_INSTALL_SUBDIR;GLOBAL_TARGET"
+    "TARGET_NAME;SCRIPTS;RESOURCES;SOURCE_DIR;DESTINATION_DIR"
+    "GLOBAL_TARGET"
     ${ARGN}
     )
 
   # Sanity checks
-  foreach(varname TARGET_NAME SCRIPTS DESTINATION_DIR INSTALL_DIR)
+  foreach(varname TARGET_NAME SCRIPTS DESTINATION_DIR)
     if(NOT DEFINED MY_${varname})
       message(FATAL_ERROR "${varname} is mandatory")
     endif()
@@ -88,20 +88,23 @@ macro(ctkMacroCompilePythonScript)
     endforeach()
   endif()
 
-  set(MY_DIRECTORY_TO_INSTALL ${MY_DESTINATION_DIR})
-  if(MY_NO_INSTALL_SUBDIR)
-    set(MY_DIRECTORY_TO_INSTALL ${MY_DESTINATION_DIR}/)
-  endif()
+  # set(MY_DIRECTORY_TO_INSTALL ${MY_DESTINATION_DIR})
+  # if(MY_NO_INSTALL_SUBDIR)
+  #   set(MY_DIRECTORY_TO_INSTALL ${MY_DESTINATION_DIR}/)
+  # endif()
 
-  if(MY_SCRIPTS)
-    install(FILES ${MY_SCRIPTS}
-      DESTINATION "${MY_INSTALL_DIR}" COMPONENT RuntimeLibraries)
-  endif()
-
-  if(MY_RESOURCES)
-    install(FILES ${MY_RESOURCES}
-      DESTINATION "${MY_INSTALL_DIR}" COMPONENT RuntimeLibraries)
-  endif()
+  # # Install python module / resources directory
+  # install(DIRECTORY "${MY_DIRECTORY_TO_INSTALL}/"
+  #   DESTINATION "${MY_INSTALL_DIR}" COMPONENT RuntimeLibraries
+  #   FILES_MATCHING
+  #     PATTERN "*.py"
+  #     PATTERN "*.pyc"
+  #     PATTERN "*.png"
+  #     PATTERN "*.ui"
+  #     PATTERN "CMakeFiles" EXCLUDE
+  #     PATTERN "ITKFactoryRegistration" EXCLUDE
+  #     PATTERN "compile_*_python_scripts.py" EXCLUDE
+  #  )
 
   if(NOT MY_GLOBAL_TARGET)
     ctkFunctionAddCompilePythonScriptTargets(${target})

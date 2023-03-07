@@ -44,7 +44,13 @@ ctkMacroCompilePythonScript(
   SCRIPTS "${KIT_PYTHON_SCRIPTS}"
   RESOURCES "${KIT_PYTHON_RESOURCES}"
   DESTINATION_DIR ${CTK_BINARY_DIR}/bin/Python
-  INSTALL_DIR ${Python3_SITELIB}
-  NO_INSTALL_SUBDIR
   )
 
+# Install python module / resources directory
+install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
+  DESTINATION "${Python3_SITELIB}" COMPONENT RuntimeLibraries
+  FILES_MATCHING
+  PATTERN "*.py"
+  PATTERN "*.pyc"
+  PATTERN "CMakeFiles" EXCLUDE
+)
